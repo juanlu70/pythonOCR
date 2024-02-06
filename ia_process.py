@@ -8,13 +8,13 @@ class IAProcess:
         return
 
     def query(self, text: str, model: str) -> str:
-        """
-        Process the question text and returns the answer from the IA prompt
+        """Process the question text and returns the answer from the IA prompt
 
         :param text: str
         :param model: str
         :return: str
         """
+        print("IA NOW PROCESSING...")
         if model == "":
             model = llm.get_model(self.default_model)
         else:

@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import os
-import sys
 import time
 import argparse
 from watchdog.observers import Observer
@@ -19,7 +18,13 @@ class MyHandler(FileSystemEventHandler):
         return
 
     # -- create an event handler for file creation and execute process for every event --
-    def on_created(self, event):
+    def on_created(self, event) -> None:
+        """Function to manage the event of image created into the destination directory and start
+        the image processing
+
+        :param event:
+        :return:
+        """
         time.sleep(1)
         print("on_created", event.src_path)
         # -- temporary download file, don't process it --
@@ -38,8 +43,7 @@ class MyHandler(FileSystemEventHandler):
 
     # -- process arguments --
     def process_arguments(self) -> str:
-        """
-        Function to process arguments from command-line
+        """Function to process arguments from command-line
 
         :param self:
         :return: dict
@@ -58,25 +62,13 @@ class MyHandler(FileSystemEventHandler):
         return args.image
 
 
+# -- main program --
 if __name__ == "__main__":
     verbose = 0
     event_handler = MyHandler()
 
     # -- manage arguments --
     path_image = event_handler.process_arguments()
-    # if len(sys.argv) > 1:
-    #     name = sys.argv[1]
-    # else:
-    #     print("A filename or watchdog directory is needed!")
-    #     print("USE: "+sys.argv[0]+" [filename|directory]")
-    #     sys.exit()
-
-    # -- add verbose mode --
-    # if len(sys.argv) > 2:
-    #     if sys.argv[2] == "-v":
-    #         tp.verbose = 1
-    #     else:
-    #         tp.solution_file = sys.argv[2]
 
     # -- load solutions file --
     if tp.solution_file != "":

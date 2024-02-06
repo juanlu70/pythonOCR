@@ -22,15 +22,20 @@ class TextProcessing:
 
     # -- process solutions --
     def process_solutions(self) -> None:
+        """This function is for make the solutions file ready to be searched
+
+        :return: none
+        """
         self.solutions = re.split(r".Q[0-9]..", self.solution_text)
 
         return
 
     # -- tesseract ocr function --
     def tesseract_ocr(self, name: str) -> str:
-        """
-        Function to make an OCR of a captured image or to procecss every new file with tesseract
-        :param name: filename or path
+        """Function to make an OCR of a captured image or to procecss every new file with tesseract, the name
+        argument could be a path for a online session or a file path for look the result offline.
+
+        :param name: string, filename or path
         :return: string
         """
         # -- open image and increase contrast to make a better OCR --
@@ -66,8 +71,7 @@ class TextProcessing:
 
     # -- remove all empty and unwanted text --
     def remove_empty_lines(self, text: str) -> str:
-        """
-        This function removes empty lines and get original full text if text filters fails
+        """This function removes empty lines and get original full text if text filters fails
 
         :param text: str
         :return: str
@@ -92,8 +96,7 @@ class TextProcessing:
 
     # -- remove wrong lines --
     def remove_trash_lines(self, text: str) -> str:
-        """
-        This function removes trash text from a list of trash text loaded from a file
+        """This function removes trash text from a list of trash text loaded from a file
 
         :param text: str
         :return: str
@@ -121,8 +124,7 @@ class TextProcessing:
 
     # -- get question and answers block from text --
     def get_query_block(self, text: str) -> str:
-        """
-        Get the block with the question and answers
+        """Get the block with the question and answers
 
         :param text: str
         :return: str
@@ -154,8 +156,7 @@ class TextProcessing:
 
     # -- get question only --
     def get_question_block(self, text: str) -> str:
-        """
-        Function to isolate question block for search solution in solution file
+        """Function to isolate question block for search solution in solution file
 
         :param text: str
         :return: str
@@ -178,8 +179,7 @@ class TextProcessing:
 
     # -- search the solution by the question --
     def search_solution(self, question: str) -> str:
-        """
-        Function to search solution by testing similar_text on the question isolated text
+        """Function to search solution by testing similar_text on the question isolated text
 
         :param question: str
         :return: str
@@ -218,6 +218,11 @@ class TextProcessing:
 
     # -- enumerate answers from the question block --
     def enumerate_answers(self, text: str) -> str:
+        """Make answers numerated to help IA to select the correct answer
+
+        :param text: str
+        :return: str
+        """
         new_text = ""
         answer = 1
 
@@ -241,8 +246,7 @@ class TextProcessing:
 
     # -- Main function to clean text and show the question block with solutions --
     def main(self, text: str) -> str:
-        """
-        Main function to show question block with the main solution
+        """Main function to show question block with the main solution
 
         :param text: str
         :return: str
