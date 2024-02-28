@@ -80,7 +80,7 @@ llm models
 If you don't see the mistral-7b-openorca you have to install previously the gtp4all model:
 
 ```
-llm install gpt4all
+llm install llm-gpt4all
 ```
 
 Then install the mistral-7b-openorca:
